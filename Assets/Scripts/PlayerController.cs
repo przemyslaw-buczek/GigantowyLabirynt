@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 12;
+    [SerializeField] float defaultSpeed = 12;
     CharacterController characterController;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] float fastGroundFactor = 2;
+    [SerializeField] float slowGroundFactor = 0.25f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +23,33 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
+        float speed = defaultSpeed;
+        RaycastHit hit;
+
+        if (Physics.Raycast(
+            groundCheck.position,
+            transform.TransformDirection(Vector3.down),
+            out hit,
+            0.4f,
+            groundMask
+        ))
+        {
+            string terrainType = hit.collider.gameObject.tag;
+
+            switch(terrainType)
+            {
+                case "Slow":
+                    speed = defaultSpeed * slowGroundFactor;
+                    break;
+                case "Fast":
+                    speed = defaultSpeed * fastGroundFactor;
+                    break;
+                default:
+                    speed = defaultSpeed;
+                    break;
+            }
+        }
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
