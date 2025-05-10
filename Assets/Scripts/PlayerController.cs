@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -55,5 +56,13 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         characterController.Move(move * speed * Time.deltaTime);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickUp"))
+        {
+            other.gameObject.GetComponent<PickUp>().Picked();
+        }
     }
 }
