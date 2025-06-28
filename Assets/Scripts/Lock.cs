@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Lock : MonoBehaviour
 {
-    Door[] doors;
+    [SerializeField] Door[] doors;
     bool canOpen = false;
     public KeyColor myColor;
     bool open = false;
@@ -18,7 +18,10 @@ public class Lock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && canOpen && !open)
+        {
+            key.SetBool("useKey", CheckKey());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
