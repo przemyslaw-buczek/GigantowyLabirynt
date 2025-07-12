@@ -7,6 +7,11 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] ColorToPrefab[] colorMappings;
     int offset = 5;
 
+    private void Start()
+    {
+        GenerateLabirynth();
+    }
+
     void GenerateTile(int x, int z)
     {
         Color pixelColor = map.GetPixel(x, z);
@@ -21,7 +26,7 @@ public class LevelGenerator : MonoBehaviour
             if (colorMapping.color == pixelColor)
             {
                 Vector3 position = new Vector3(x, 0, z) * offset;
-                Instantiate(colorMapping.prefab, position, Quaternion.identity);
+                Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
 
                 return;
             }
