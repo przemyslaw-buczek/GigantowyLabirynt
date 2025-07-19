@@ -8,6 +8,6 @@ public class Crystal : PickUp
     public override void Picked()
     {
         GameManager.gameManager.AddPoints(points);
-        Destroy(gameObject);
+        base.Picked();
     }
 }

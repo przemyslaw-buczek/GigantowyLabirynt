@@ -7,6 +7,6 @@ public class Freeze : PickUp
     public override void Picked()
     {
         GameManager.gameManager.FreezeTime(duration);
-        Destroy(gameObject);
+        base.Picked();
     }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] int timeToEnd;
+    [SerializeField] AudioClip pauseClip;
+    [SerializeField] AudioClip resumeClip;
+
+    AudioSource audioSource;
+    
     bool gamePaused = false;
     bool win = false;
     public int points = 0;
@@ -15,6 +20,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         if (gameManager == null)
         {
             gameManager = this;
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     void PauseGame()
     {
+        PlayClip(pauseClip);
         Debug.Log("Pause Game");
         Time.timeScale = 0;
         gamePaused = true;
@@ -51,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     void ResumeGame()
     {
+        PlayClip(resumeClip);
         Debug.Log("Resume Game");
         Time.timeScale = 1;
         gamePaused = false;
@@ -108,5 +117,11 @@ public class GameManager : MonoBehaviour
                 goldKeys++; 
                 break;
         }
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }

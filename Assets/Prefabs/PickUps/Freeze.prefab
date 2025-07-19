@@ -111,4 +111,5 @@ MonoBehaviour:
   rotateX: 0
   rotateY: 1
   rotateZ: 0
+  clip: {fileID: 8300000, guid: f2f1ec5b251c7ca42b2670b976796f2f, type: 3}
   duration: 5

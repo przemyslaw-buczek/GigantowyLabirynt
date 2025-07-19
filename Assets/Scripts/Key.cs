@@ -14,6 +14,6 @@ public class Key : PickUp
     public override void Picked()
     {
         GameManager.gameManager.AddKey(color);
-        Destroy(gameObject);
+        base.Picked();
     }
 }

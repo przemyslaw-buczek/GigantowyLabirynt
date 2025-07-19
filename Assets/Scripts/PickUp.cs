@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] bool rotateX = false;
     [SerializeField] bool rotateY = false;
     [SerializeField] bool rotateZ = false;
+    [SerializeField] AudioClip clip;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +28,7 @@ public class PickUp : MonoBehaviour
 
     public virtual void Picked()
     {
+        GameManager.gameManager.PlayClip(clip);
         Debug.Log("Picked up: " + gameObject.name);
         Destroy(gameObject);
     }

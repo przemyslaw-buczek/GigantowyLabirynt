@@ -139,4 +139,5 @@ MonoBehaviour:
   rotateX: 0
   rotateY: 0
   rotateZ: 0
+  clip: {fileID: 8300000, guid: 271dc8681dc00bb4caeb9aab24146d68, type: 3}
   time: -5

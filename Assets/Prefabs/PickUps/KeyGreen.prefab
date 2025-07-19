@@ -125,4 +125,5 @@ MonoBehaviour:
   rotateX: 0
   rotateY: 0
   rotateZ: 0
+  clip: {fileID: 8300000, guid: caa715b07679edd448eab192189ae161, type: 3}
   color: 1
