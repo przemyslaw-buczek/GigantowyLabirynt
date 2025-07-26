@@ -1,11 +1,19 @@
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] int timeToEnd;
     [SerializeField] AudioClip pauseClip;
     [SerializeField] AudioClip resumeClip;
+
+    [SerializeField] Text timeText;
+    [SerializeField] Text pointsText;
+    [SerializeField] Text redKeysText;
+    [SerializeField] Text greenKeysText;
+    [SerializeField] Text goldKeysText;
+
 
     AudioSource audioSource;
     
@@ -29,6 +37,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Time: " + timeToEnd + " s");
         InvokeRepeating(nameof(TimerTick), 2, 1);
+
+        pointsText.text = points.ToString();
+        redKeysText.text = redKeys.ToString();
+        greenKeysText.text = greenKeys.ToString();
+        goldKeysText.text = goldKeys.ToString();
     }
 
     // Update is called once per frame
@@ -90,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int points)
     {
         this.points += points;
+        pointsText.text = points.ToString();
     }
 
     public void AddTime(int time)
@@ -109,12 +123,15 @@ public class GameManager : MonoBehaviour
         {
             case KeyColor.Red:
                 redKeys++;
+                redKeysText.text = redKeys.ToString();
                 break; 
             case KeyColor.Green: 
                 greenKeys++;
+                greenKeysText.text = greenKeys.ToString();
                 break;
             case KeyColor.Gold:
-                goldKeys++; 
+                goldKeys++;
+                goldKeysText.text = goldKeys.ToString();
                 break;
         }
     }
